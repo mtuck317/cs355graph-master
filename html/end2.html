@@ -1,0 +1,15 @@
+
+		$("#"+String(end)).html("<img src=\"images/end.jpg\"> <img class=\"person\" src=\"images/person.jpg\">");
+		var cur = 0;
+		$("#"+String(path[0])).addClass("active");
+		$("#next").click(function(){
+			$("#"+String(path[cur])).removeClass("active");
+			cur++;
+			if(cur == path.length)
+				cur = 0;
+			$("#"+String(path[cur])).addClass("active");
+		});
+		
+</script>
+</body>
+</html>

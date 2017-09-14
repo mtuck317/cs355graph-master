@@ -1,0 +1,55 @@
+</div>
+	<div class="container"><input type="button" class="btn btn-lg btn-danger" style="left:100px;" id="next" value="next"></input></div>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jsPlumb/1.4.1/jquery.jsPlumb-1.4.1-all-min.js"></script>
+    
+    <script>
+	
+		var nodes = 9;
+		
+	
+        jsPlumb.ready(function() {
+
+			
+			
+			for(var j = 0; j < nodes; j++){
+				var connections = String($('#'+j).attr("connection"));
+				
+				var temp = "";
+				for(var k = 0; k <connections.length; k++){
+					
+					if(connections[k] != ","){
+					
+						temp += String(connections[k]);
+						
+					}
+					else{
+						j = String(j);
+						temp = String(temp);
+				jsPlumb.connect({
+					connector: ["Straight"],
+					source:j,              
+					target:temp,		
+					anchor: ["Left", "Right"],
+					endpoint:[ "Rectangle", { width:1, height:1 } ],
+					paintStyle:{lineWidth:1,strokeStyle:'rgb(100,100,100)'},
+					
+					  overlays:[ 
+						"Arrow", 
+						[ "Label", {  location:0.25} ]
+						]
+	});
+						temp = "";
+				
+					}
+				}	
+			};
+			
+			
+           for(var i = 0; i < 9; i++){
+			 jsPlumb.draggable(String(i));
+         }
+        });
+    </script> 
+<script>
